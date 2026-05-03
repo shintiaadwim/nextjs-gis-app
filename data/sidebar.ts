@@ -10,9 +10,9 @@ import {
 import {
     Cog6ToothIcon,
     HomeIcon,
-    MegaphoneIcon,
-    Square2StackIcon,
-    TicketIcon,
+    ChartBarIcon,
+    DocumentChartBarIcon,
+    TableCellsIcon,
 } from '@heroicons/react/20/solid'
 
 export type SidebarIcon = ComponentType<SVGProps<SVGSVGElement>>
@@ -31,10 +31,10 @@ export type SidebarMenuItem = {
 
 export const mainNavigation: SidebarNavItem[] = [
     { href: '/', label: 'Dashboard', icon: HomeIcon },
-    { href: '/events', label: 'Events', icon: Square2StackIcon },
-    { href: '/orders', label: 'Orders', icon: TicketIcon },
+    { href: '/analytics', label: 'Analytics', icon: ChartBarIcon },
+    { href: '/data', label: 'Data', icon: TableCellsIcon },
+    { href: '/reports', label: 'Reports', icon: DocumentChartBarIcon },
     { href: '/settings', label: 'Settings', icon: Cog6ToothIcon },
-    { href: '/broadcasts', label: 'Broadcasts', icon: MegaphoneIcon },
 ]
 
 export const teamMenu: SidebarMenuItem[] = [

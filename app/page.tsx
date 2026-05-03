@@ -1,10 +1,10 @@
 import { AppShell } from '@/components/layout/AppShell'
-import { Dashboard } from '@/components/sections/Dashboard'
+import { HomePage } from '@/components/sections/HomePage'
 
 export default function Home() {
   return (
     <AppShell>
-      <Dashboard />
+      <HomePage />
     </AppShell>
   )
 }

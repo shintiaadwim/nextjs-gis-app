@@ -1,6 +1,6 @@
 "use client"
 
-import { Avatar } from '@/components/avatar'
+import { Avatar } from '@/components/ui/avatar'
 import {
     Dropdown,
     DropdownButton,
@@ -8,7 +8,7 @@ import {
     DropdownItem,
     DropdownLabel,
     DropdownMenu,
-} from '@/components/dropdown'
+} from '@/components/ui/dropdown'
 import {
     Sidebar,
     SidebarBody,
@@ -17,12 +17,11 @@ import {
     SidebarItem,
     SidebarLabel,
     SidebarSection,
-} from '@/components/sidebar'
-import { mainNavigation, profileMenu, teamMenu } from '@/data/sidebar'
+} from '@/components/layout/sidebar'
+import { mainNavigation, profileMenu } from '@/data/sidebar'
 import clsx from 'clsx'
 import { usePathname } from 'next/navigation'
 import {
-    ChevronDownIcon,
     ChevronUpIcon,
 } from '@heroicons/react/16/solid'
 
