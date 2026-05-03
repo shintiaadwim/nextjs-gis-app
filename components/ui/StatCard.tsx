@@ -27,34 +27,35 @@ export default function StatCard({
 
     return (
         <div
-            className={`group relative overflow-hidden rounded-3xl border border-gray-300 p-6 shadow-lg shadow-gray-200 hover-lift transition-all hover:shadow-blue-200 ${accent} animate-fade-in`}
+            className={`group relative overflow-hidden rounded-xl sm:rounded-2xl border border-gray-200 p-3 sm:p-4 md:p-5 shadow-sm hover:shadow-md transition-all duration-300 bg-linear-to-br ${accent} animate-fade-in`}
         >
-            <div className="absolute inset-0 bg-linear-to-br from-blue-100/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <div className="absolute inset-0 bg-linear-to-br from-white/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-            <div className="relative z-10">
-                <div className="flex items-center justify-between mb-2">
-                    <p className="text-sm uppercase tracking-[0.24em] text-gray-600 font-medium">
+            <div className="relative z-10 space-y-2 sm:space-y-3">
+                <div className="flex items-start justify-between gap-2">
+                    <p className="text-xs sm:text-sm uppercase tracking-widest text-gray-600 font-bold leading-tight">
                         {label}
                     </p>
                     {icon && (
-                        <div className="text-2xl opacity-60 group-hover:opacity-100 transition-opacity">
+                        <div className="text-lg sm:text-xl opacity-70 group-hover:opacity-100 transition-opacity shrink-0">
                             {icon}
                         </div>
                     )}
                 </div>
 
-                <p className="text-3xl font-bold text-gray-900 mb-2 group-hover:scale-105 transition-transform duration-200">
+                <p className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 wrap-break-words">
                     {value}
                 </p>
 
-                <div className={`flex items-center gap-1 text-sm ${trendColor[trend]}`}>
+                <div className={`flex items-center gap-1 text-xs font-medium ${trendColor[trend]}`}>
                     <span>{trendIcon[trend]}</span>
-                    <span className="opacity-80">vs periode sebelumnya</span>
+                    <span className="opacity-75 hidden sm:inline">vs periode</span>
+                    <span className="opacity-75 sm:hidden">periode</span>
                 </div>
             </div>
 
-            {/* Decorative gradient overlay */}
-            <div className="absolute -top-10 -right-10 w-20 h-20 bg-linear-to-br from-blue-300/20 to-gray-300/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            {/* Decorative gradient */}
+            <div className="absolute -top-6 -right-6 sm:-top-8 sm:-right-8 w-12 h-12 sm:w-16 sm:h-16 bg-linear-to-br from-white/30 to-transparent rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
         </div>
     )
 }

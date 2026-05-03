@@ -1,21 +1,13 @@
 'use client'
 
 import { useCSVContext } from '@/context/CSVContext'
+import { generateYearArray, DEFAULT_REGIONS } from '@/utils/filterUtils'
 
 export function DataFilter() {
     const { selectedYear, selectedProvince, setSelectedYear, setSelectedProvince } = useCSVContext()
 
-    const years = ['all', ...Array.from({ length: 24 }, (_, i) => String(2001 + i))]
-    const provinces = [
-        'all',
-        'Sumatra',
-        'Kalimantan',
-        'Sulawesi',
-        'Papua',
-        'Java',
-        'Bali',
-        'Nusa Tenggara',
-    ]
+    const years = generateYearArray()
+    const provinces = [...DEFAULT_REGIONS]
 
     return (
         <article className="rounded-2xl border border-slate-100 bg-linear-to-br from-slate-900 via-slate-800 to-slate-950 p-8 text-white shadow-xl">

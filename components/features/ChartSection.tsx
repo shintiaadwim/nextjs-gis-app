@@ -15,39 +15,12 @@ import {
     ResponsiveContainer,
     Legend,
 } from 'recharts'
-
-const pieColors = [
-    '#2563eb', '#3b82f6', '#60a5fa', '#93c5fd', '#1e40af',
-    '#1e3a8a', '#f59e0b', '#fbbf24', '#fcd34d', '#fed7aa',
-    '#dc2626', '#ef4444', '#f87171', '#fca5a5', '#fee2e2',
-    '#059669', '#10b981', '#34d399', '#6ee7b7', '#d1fae5',
-    '#7c3aed', '#a78bfa', '#c4b5fd', '#ddd6fe', '#ede9fe',
-    '#0891b2', '#06b6d4', '#22d3ee', '#67e8f9', '#cffafe',
-    '#6b21a8', '#9333ea', '#c084fc', '#e9d5ff', '#fae8ff',
-]
+import { PIE_COLORS, TrendDataPoint, RegionDataPoint } from '@/utils/chartUtils'
+import { ChartTooltip } from '@/components/ui/ChartTooltip'
 
 type ChartSectionProps = {
-    trendData: Array<{ year: number; areaHa: number; carbonEmissionTon: number }>
-    regionData: Array<{
-        province: string
-        areaHa: number
-        carbonEmissionTon: number
-    }>
-}
-
-const CustomTooltip = ({ active, payload }: { active?: boolean; payload?: Array<{ color: string; name: string; value: number }> }) => {
-    if (active && payload && payload.length) {
-        return (
-            <div className="rounded-lg bg-white border border-gray-300 p-3 shadow-lg">
-                {payload.map((entry, index) => (
-                    <p key={index} style={{ color: entry.color }} className="text-xs font-semibold">
-                        {entry.name}: {entry.value.toLocaleString('id-ID')}
-                    </p>
-                ))}
-            </div>
-        )
-    }
-    return null
+    trendData: TrendDataPoint[]
+    regionData: RegionDataPoint[]
 }
 
 export default function ChartSection({
@@ -63,32 +36,33 @@ export default function ChartSection({
     }
 
     return (
-        <div className="space-y-6">
-            <div className="grid gap-6 lg:grid-cols-2">
+        <div className="space-y-4 sm:space-y-6">
+            <div className="grid gap-4 sm:gap-6 lg:grid-cols-2">
                 {/* Line Chart - Tren */}
-                <div className="group relative overflow-hidden rounded-3xl border border-gray-300 p-6 shadow-lg shadow-gray-200 hover-lift glass bg-white animate-fade-in">
+                <div className="group relative overflow-hidden rounded-xl sm:rounded-2xl border border-gray-300 p-3 sm:p-4 md:p-6 shadow-md sm:shadow-lg hover:shadow-lg transition-shadow bg-white animate-fade-in">
                     <div className="absolute inset-0 bg-linear-to-br from-blue-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
                     <div className="relative z-10">
-                        <h3 className="mb-6 text-xl font-bold text-gray-900">
-                            📈 Tren Deforestasi per Tahun
+                        <h3 className="mb-3 sm:mb-4 md:mb-6 text-base sm:text-lg md:text-xl font-bold text-gray-900">
+                            📈 Tren Deforestasi
                         </h3>
-                        <div className="h-80">
+                        <div className="h-60 sm:h-72 md:h-80">
                             <ResponsiveContainer width="100%" height="100%">
-                                <LineChart data={trendData} margin={{ top: 5, right: 30, left: 0, bottom: 5 }}>
+                                <LineChart data={trendData} margin={{ top: 5, right: 10, left: -20, bottom: 5 }}>
                                     <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
                                     <XAxis
                                         dataKey="year"
                                         stroke="#9ca3af"
-                                        fontSize={12}
+                                        fontSize={10}
                                         tick={{ fill: '#6b7280' }}
                                     />
                                     <YAxis
                                         stroke="#9ca3af"
-                                        fontSize={12}
+                                        fontSize={10}
                                         tick={{ fill: '#6b7280' }}
+                                        width={40}
                                     />
-                                    <Tooltip content={<CustomTooltip />} />
+                                    <Tooltip content={<ChartTooltip />} />
                                     <Legend wrapperStyle={{ paddingTop: '20px' }} />
                                     <Line
                                         type="monotone"
@@ -113,18 +87,18 @@ export default function ChartSection({
                         </div>
                     </div>
 
-                    <div className="absolute -top-10 -right-10 w-20 h-20 bg-linear-to-br from-blue-200/20 to-blue-300/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="absolute -top-6 -right-6 sm:-top-8 sm:-right-8 w-12 h-12 sm:w-16 sm:h-16 bg-linear-to-br from-blue-200/20 to-blue-300/20 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </div>
 
                 {/* Pie Chart - Komposisi */}
-                <div className="group relative overflow-hidden rounded-3xl border border-gray-300 p-6 shadow-lg shadow-gray-200 hover-lift glass bg-white animate-fade-in">
+                <div className="group relative overflow-hidden rounded-xl sm:rounded-2xl border border-gray-300 p-3 sm:p-4 md:p-6 shadow-md sm:shadow-lg hover:shadow-lg transition-shadow bg-white animate-fade-in">
                     <div className="absolute inset-0 bg-linear-to-br from-blue-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
                     <div className="relative z-10">
-                        <h3 className="mb-6 text-xl font-bold text-gray-900">
-                            🥧 Komposisi Emisi per Wilayah
+                        <h3 className="mb-3 sm:mb-4 md:mb-6 text-base sm:text-lg md:text-xl font-bold text-gray-900">
+                            🥧 Komposisi Emisi
                         </h3>
-                        <div className="h-80">
+                        <div className="h-60 sm:h-72 md:h-80">
                             <ResponsiveContainer width="100%" height="100%">
                                 <PieChart>
                                     <Pie
@@ -140,45 +114,46 @@ export default function ChartSection({
                                         {regionData.map((entry, index) => (
                                             <Cell
                                                 key={`cell-${entry.province}`}
-                                                fill={pieColors[index % pieColors.length]}
+                                                fill={PIE_COLORS[index % PIE_COLORS.length]}
                                             />
                                         ))}
                                     </Pie>
-                                    <Tooltip content={<CustomTooltip />} />
+                                    <Tooltip content={<ChartTooltip />} />
                                     <Legend verticalAlign="bottom" height={36} />
                                 </PieChart>
                             </ResponsiveContainer>
                         </div>
                     </div>
 
-                    <div className="absolute -bottom-10 -left-10 w-20 h-20 bg-linear-to-tr from-blue-200/20 to-blue-300/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="absolute -bottom-6 -left-6 sm:-bottom-8 sm:-left-8 w-12 h-12 sm:w-16 sm:h-16 bg-linear-to-tr from-blue-200/20 to-blue-300/20 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </div>
             </div>
 
             {/* Bar Chart - Laju Deforestasi */}
-            <div className="group relative overflow-hidden rounded-3xl border border-gray-300 p-6 shadow-lg shadow-gray-200 hover-lift glass bg-white animate-fade-in">
+            <div className="group relative overflow-hidden rounded-xl sm:rounded-2xl border border-gray-300 p-3 sm:p-4 md:p-6 shadow-md sm:shadow-lg hover:shadow-lg transition-shadow bg-white animate-fade-in">
                 <div className="absolute inset-0 bg-linear-to-br from-blue-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
                 <div className="relative z-10">
-                    <h3 className="mb-6 text-xl font-bold text-gray-900">
-                        📊 Laju Deforestasi per Tahun
+                    <h3 className="mb-3 sm:mb-4 md:mb-6 text-base sm:text-lg md:text-xl font-bold text-gray-900">
+                        📊 Laju Deforestasi
                     </h3>
-                    <div className="h-95">
+                    <div className="h-60 sm:h-72 md:h-80">
                         <ResponsiveContainer width="100%" height="100%">
-                            <BarChart data={trendData} margin={{ top: 5, right: 30, left: 0, bottom: 5 }}>
+                            <BarChart data={trendData} margin={{ top: 5, right: 10, left: -20, bottom: 5 }}>
                                 <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
                                 <XAxis
                                     dataKey="year"
                                     stroke="#9ca3af"
-                                    fontSize={12}
+                                    fontSize={10}
                                     tick={{ fill: '#6b7280' }}
                                 />
                                 <YAxis
                                     stroke="#9ca3af"
-                                    fontSize={12}
+                                    fontSize={10}
                                     tick={{ fill: '#6b7280' }}
+                                    width={40}
                                 />
-                                <Tooltip content={<CustomTooltip />} />
+                                <Tooltip content={<ChartTooltip />} />
                                 <Legend wrapperStyle={{ paddingTop: '20px' }} />
                                 <Bar
                                     dataKey="areaHa"
@@ -190,7 +165,7 @@ export default function ChartSection({
                         </ResponsiveContainer>
                     </div>
                 </div>
-
+                6 -left-6 sm:-top-8 sm:-left-8 w-12 h-12 sm:w-16 sm:h-16 bg-linear-to-br from-blue-200/20 to-gray-300/20 rounded-full blur-lg
                 <div className="absolute -top-10 -left-10 w-20 h-20 bg-linear-to-br from-blue-200/20 to-gray-300/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             </div>
         </div>

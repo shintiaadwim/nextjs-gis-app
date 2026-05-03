@@ -123,15 +123,15 @@ export function HomePage() {
         </div>
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
-        <section className="space-y-6">
-          <div className="grid gap-6 sm:grid-cols-3">
+      <div className="grid gap-8 w-full">
+        <section className="space-y-6 w-full">
+          <div className="grid gap-3 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 w-full">
             <StatCard
               label="Total luas deforestasi"
               value={`${totals.totalArea.toLocaleString('id-ID')} ha`}
               icon="🌳"
               trend="down"
-              accent="bg-linear-to-br from-red-900/50 to-red-800/50"
+              accent="from-red-50 to-red-100"
             />
             <StatCard
               label="Estimasi total emisi"
@@ -140,14 +140,14 @@ export function HomePage() {
               })} ton CO₂`}
               icon="💨"
               trend="up"
-              accent="bg-linear-to-br from-orange-900/50 to-orange-800/50"
+              accent="from-orange-50 to-orange-100"
             />
             <StatCard
               label="Data periode"
               value="2018 - 2022"
               icon="📅"
               trend="neutral"
-              accent="bg-linear-to-br from-blue-900/50 to-blue-800/50"
+              accent="from-blue-50 to-blue-100"
             />
           </div>
 
@@ -164,37 +164,37 @@ export function HomePage() {
           </div>
         </section>
 
-        <aside className="space-y-6">
+        <aside className="space-y-6 w-full order-first lg:order-last lg:w-auto lg:h-fit">
           <FilterPanel
             data={data}
             selectedYear={filters.year}
             selectedProvince={filters.province}
             onChange={setFilters}
           />
-          <div className="group relative overflow-hidden rounded-3xl border border-white/10 p-6 shadow-xl shadow-slate-900/30 glass bg-linear-to-br from-slate-900/50 to-slate-800/50 animate-fade-in">
+          <div className="hidden lg:block group relative overflow-hidden rounded-2xl border border-gray-200 p-5 shadow-md bg-linear-to-br from-slate-50 to-gray-50 animate-fade-in lg:sticky lg:top-24">
             <div className="absolute inset-0 bg-linear-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
             <div className="relative z-10">
-              <h2 className="text-lg font-bold text-white mb-4">
-                📊 Rangkuman Sistem Perhitungan
+              <h2 className="text-sm font-bold text-gray-900 mb-3">
+                📊 Info Sistem
               </h2>
-              <p className="text-slate-300 leading-relaxed">
+              <p className="text-gray-600 text-sm leading-relaxed">
                 Estimasi berbasis luas deforestasi dikalikan faktor emisi karbon
                 standar. Perhitungan ini memungkinkan perbandingan area dan
                 emisi antar wilayah serta tahun.
               </p>
-              <div className="mt-5 rounded-2xl bg-linear-to-r from-slate-800/80 to-slate-700/80 p-4 text-slate-200 border border-white/5 backdrop-blur-sm">
-                <p className="text-sm text-slate-400 font-medium">Rumus:</p>
-                <p className="mt-2 font-bold text-cyan-300">
-                  Emisi CO₂ = Luas deforestasi (ha) × Faktor emisi (ton CO₂/ha)
+              <div className="mt-4 rounded-lg bg-blue-50 p-3 text-gray-700 border border-blue-200 text-xs space-y-2">
+                <p className="text-gray-700 font-semibold">📐 Rumus:</p>
+                <p className="font-mono text-blue-900 bg-white/70 px-2 py-1 rounded text-xs">
+                  Emisi = Luas (ha) × 45.5 ton CO₂/ha
                 </p>
-                <div className="mt-3 text-xs text-slate-400">
-                  Faktor emisi: ~45.5 ton CO₂ per hektar hutan tropis
-                </div>
+                <p className="text-gray-500">
+                  ℹ️ Standar faktor emisi hutan tropis
+                </p>
               </div>
             </div>
 
-            <div className="absolute -bottom-10 -right-10 w-20 h-20 bg-linear-to-tl from-cyan-500/20 to-blue-500/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="absolute -bottom-8 -right-8 w-16 h-16 bg-linear-to-tl from-blue-200/30 to-cyan-200/30 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
           </div>
         </aside>
       </div>

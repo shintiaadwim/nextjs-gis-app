@@ -1,11 +1,12 @@
-import { DeforestationRecord, FilterOptions } from "@/lib/types";
+import { DeforestationRecord, FilterOptions } from "@/lib/types"
+import { extractYears, extractProvinces } from "@/utils/filterUtils"
 
 type FilterPanelProps = {
-    data: DeforestationRecord[];
-    selectedYear?: number;
-    selectedProvince?: string;
-    onChange: (filters: FilterOptions) => void;
-};
+    data: DeforestationRecord[]
+    selectedYear?: number
+    selectedProvince?: string
+    onChange: (filters: FilterOptions) => void
+}
 
 export default function FilterPanel({
     data,
@@ -13,61 +14,56 @@ export default function FilterPanel({
     selectedProvince,
     onChange,
 }: FilterPanelProps) {
-    const years = Array.from(new Set(data.map((item) => item.year))).sort(
-        (a, b) => a - b,
-    );
-    const provinces = Array.from(
-        new Set(data.map((item) => item.province)),
-    ).sort();
+    const years = extractYears(data)
+    const provinces = extractProvinces(data)
 
     return (
-        <div className="rounded-3xl border border-white/10 bg-slate-950/70 p-6 shadow-xl shadow-slate-900/20">
-            <h2 className="text-lg font-semibold text-white">Filter Data</h2>
-            <div className="mt-4 grid gap-4 sm:grid-cols-2">
-                <label className="space-y-2 text-sm text-slate-300">
-                    Tahun
-                    <select
-                        value={selectedYear ?? ""}
-                        onChange={(event) =>
-                            onChange({
-                                year: event.target.value
-                                    ? Number(event.target.value)
-                                    : undefined,
-                                province: selectedProvince,
-                            })
-                        }
-                        className="w-full rounded-2xl border border-slate-700 bg-slate-900 px-4 py-3 text-white outline-none focus:border-brand-500"
-                    >
-                        <option value="">Semua Tahun</option>
-                        {years.map((year) => (
-                            <option key={year} value={year}>
-                                {year}
-                            </option>
-                        ))}
-                    </select>
-                </label>
+        <div className="w-full lg:w-80 rounded-2xl border border-slate-200 bg-white p-4 sm:p-5 shadow-md space-y-4 lg:sticky lg:top-24">
+            <h2 className="text-sm sm:text-base font-bold text-gray-900">🔍 Filter Data</h2>
 
-                <label className="space-y-2 text-sm text-slate-300">
-                    Provinsi / Wilayah
-                    <select
-                        value={selectedProvince ?? ""}
-                        onChange={(event) =>
-                            onChange({
-                                year: selectedYear,
-                                province: event.target.value || undefined,
-                            })
-                        }
-                        className="w-full rounded-2xl border border-slate-700 bg-slate-900 px-4 py-3 text-white outline-none focus:border-brand-500"
-                    >
-                        <option value="">Semua Wilayah</option>
-                        {provinces.map((province) => (
-                            <option key={province} value={province}>
-                                {province}
-                            </option>
-                        ))}
-                    </select>
-                </label>
-            </div>
+            <label className="space-y-1.5 sm:space-y-2 block">
+                <span className="text-xs uppercase tracking-wider font-semibold text-gray-600">Tahun</span>
+                <select
+                    value={selectedYear ?? ""}
+                    onChange={(event) =>
+                        onChange({
+                            year: event.target.value
+                                ? Number(event.target.value)
+                                : undefined,
+                            province: selectedProvince,
+                        })
+                    }
+                    className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition"
+                >
+                    <option value="">Semua Tahun</option>
+                    {years.map((year) => (
+                        <option key={year} value={year}>
+                            {year}
+                        </option>
+                    ))}
+                </select>
+            </label>
+
+            <label className="space-y-1.5 sm:space-y-2 block">
+                <span className="text-xs uppercase tracking-wider font-semibold text-gray-600">Provinsi / Wilayah</span>
+                <select
+                    value={selectedProvince ?? ""}
+                    onChange={(event) =>
+                        onChange({
+                            year: selectedYear,
+                            province: event.target.value || undefined,
+                        })
+                    }
+                    className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition"
+                >
+                    <option value="">Semua Wilayah</option>
+                    {provinces.map((province) => (
+                        <option key={province} value={province}>
+                            {province}
+                        </option>
+                    ))}
+                </select>
+            </label>
         </div>
     );
 }
