@@ -2,7 +2,6 @@
 
 import Link from 'next/link'
 import { useEffect, useMemo, useState } from 'react'
-import { MainContentLayout } from '@/components/sections/MainContentLayout'
 import {
   calculateTotals,
   getRegionSummary,
@@ -64,16 +63,16 @@ export function HomePage() {
   const regionData = getRegionSummary(filteredData)
 
   return (
-    <div className="w-full min-h-screen">
+    <div className="w-full min-h-screen overflow-hidden bg-linear-to-r from-blue-600 via-blue-700 to-emerald-700 text-white">
       {/* Hero Section */}
-      <div className="bg-linear-to-r from-blue-600 via-blue-700 to-emerald-700 text-white relative overflow-hidden">
+      <div className="relative flex min-h-screen items-center overflow-hidden">
         {/* Decorative background elements */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl -mr-48 -mt-48"></div>
           <div className="absolute bottom-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl -ml-48 -mb-48"></div>
         </div>
 
-        <div className="relative mx-auto max-w-6xl px-4 sm:px-6 md:px-8 py-12 sm:py-16 md:py-20 lg:py-24">
+        <div className="relative mx-auto flex w-full max-w-6xl px-4 sm:px-6 md:px-8 py-12 sm:py-16 md:py-20 lg:py-24">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8 lg:gap-12">
             <div className="flex-1 min-w-0">
               <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full mb-6 border border-white/30">
@@ -81,17 +80,17 @@ export function HomePage() {
                 <p className="text-xs sm:text-sm font-semibold">Carbon-Loss Tracker Indonesia</p>
               </div>
 
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight mb-4 sm:mb-6 wrap-break-words">
-                Monitor Emisi Karbon dari Deforestasi
+              <h1 className="font-bold leading-tight mb-4 sm:mb-6 wrap-break-words sm:text-2xl lg:text-3xl xl:text-4xl">
+                Estimasi Pelepasan Emisi Karbon Berdasarkan Deforestasi di Indonesia
               </h1>
 
-              <p className="text-sm sm:text-base lg:text-lg text-blue-100 leading-relaxed mb-8 sm:mb-10 max-w-2xl">
-                Platform analitik komprehensif untuk memantau deforestasi dan emisi CO₂ di seluruh Indonesia. Visualisasi real-time, tren historis, dan perbandingan regional untuk memahami dampak lingkungan.
+              <p className="text-blue-100 leading-relaxed mb-8 sm:mb-10 max-w-2xl sm:text-sm lg:text-base">
+                Monitoring deforestasi dan emisi CO₂ di wilayah Indonesia dengan visualisasi tren, perbandingan wilayah, dan estimasi karbon berbasis luas hutan yang hilang.
               </p>
 
               <Link
                 href="/analytics"
-                className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-white hover:bg-gray-50 text-blue-700 font-semibold rounded-lg transition-all duration-200 text-sm sm:text-base active:scale-95 shadow-lg hover:shadow-xl"
+                className="inline-flex items-center justify-center gap-2 px-5 sm:px-5 py-3 sm:py-3 bg-white hover:bg-gray-50 text-blue-700 font-semibold rounded-lg transition-all duration-200 text-sm sm:text-base active:scale-95 shadow-lg hover:shadow-xl"
               >
                 <span>📊 Lihat Analisis Lengkap</span>
                 <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -122,7 +121,7 @@ export function HomePage() {
             </div>
           </div>
         </div>
-      </div>  
+      </div>
     </div>
   )
 }

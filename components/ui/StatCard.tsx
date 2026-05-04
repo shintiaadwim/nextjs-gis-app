@@ -27,21 +27,21 @@ export default function StatCard({
 
     return (
         <div
-            className={`relative overflow-hidden rounded-xl border border-gray-200 p-6 md:p-7 lg:p-8 shadow-sm hover:shadow-md transition-all duration-300 bg-linear-to-br ${accent}`}
+            className={`relative overflow-hidden rounded-xl border border-gray-200 p-4 md:p-5 shadow-sm hover:shadow-md transition-all duration-300 bg-linear-to-br ${accent}`}
         >
             <div className="flex flex-col space-y-4">
                 <div className="flex items-start justify-between">
-                    <p className="text-xs md:text-sm uppercase tracking-widest text-gray-600 font-semibold leading-tight flex-1">
+                    <p className="text-xs uppercase tracking-widest text-gray-600 font-semibold leading-tight flex-1">
                         {label}
                     </p>
-                    {icon && <span className="text-2xl md:text-3xl opacity-70 shrink-0">{icon}</span>}
+                    {icon && <span className="text-xl md:text-2xl opacity-70 shrink-0">{icon}</span>}
                 </div>
 
-                <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 wrap-break-words">
+                <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 wrap-break-words">
                     {value}
                 </p>
 
-                <div className={`flex items-center gap-1 text-xs md:text-sm font-medium ${trendColor[trend]}`}>
+                <div className={`flex items-center gap-1 text-xs font-medium ${trendColor[trend]}`}>
                     <span>{trendIcon[trend]}</span>
                     <span>vs periode</span>
                 </div>

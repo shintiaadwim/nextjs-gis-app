@@ -41,7 +41,7 @@ export function SidebarLayout({ sidebar, children }: { sidebar: ReactNode; child
             {/* SIDEBAR */}
             <div
                 className={clsx(
-                    'fixed inset-y-0 left-0 z-50 w-56 transition-transform md:static md:translate-x-0',
+                    'fixed inset-y-0 left-0 z-50 w-56 transition-transform md:fixed md:inset-y-0 md:left-0 md:translate-x-0',
                     isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
                 )}
             >
@@ -58,7 +58,7 @@ export function SidebarLayout({ sidebar, children }: { sidebar: ReactNode; child
             </div>
 
             {/* MAIN CONTENT */}
-            <main className="flex-1 min-w-0 overflow-x-hidden px-4 sm:px-6 md:px-8 py-6">
+            <main className="flex-1 min-w-0 overflow-x-hidden px-4 sm:px-6 md:px-8 md:ml-56 py-6">
                 {children}
             </main>
         </div>

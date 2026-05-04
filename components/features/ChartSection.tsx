@@ -27,6 +27,11 @@ export default function ChartSection({
     trendData,
     regionData,
 }: ChartSectionProps) {
+    const pieLegendItems = regionData.map((entry, index) => ({
+        name: entry.province,
+        color: PIE_COLORS[index % PIE_COLORS.length],
+    }))
+
     if (!trendData || trendData.length === 0) {
         return (
             <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
@@ -59,7 +64,7 @@ export default function ChartSection({
                                     width={40}
                                 />
                                 <Tooltip content={<ChartTooltip />} />
-                                <Legend wrapperStyle={{ paddingTop: '20px' }} />
+                                <Legend wrapperStyle={{ paddingTop: '20px', fontSize: '12px' }} />
                                 <Line
                                     type="monotone"
                                     dataKey="areaHa"
@@ -93,8 +98,8 @@ export default function ChartSection({
                                     data={regionData}
                                     dataKey="carbonEmissionTon"
                                     nameKey="province"
-                                    innerRadius={60}
-                                    outerRadius={100}
+                                    innerRadius={52}
+                                    outerRadius={88}
                                     paddingAngle={2}
                                     stroke="#ffffff"
                                     strokeWidth={2}
@@ -107,9 +112,21 @@ export default function ChartSection({
                                     ))}
                                 </Pie>
                                 <Tooltip content={<ChartTooltip />} />
-                                <Legend verticalAlign="bottom" height={36} />
                             </PieChart>
                         </ResponsiveContainer>
+                    </div>
+                    <div className="mt-3 max-h-28 overflow-y-auto pr-1">
+                        <div className="flex flex-wrap gap-x-3 gap-y-2 text-[11px] sm:text-xs leading-tight">
+                            {pieLegendItems.map((item) => (
+                                <div key={item.name} className="flex items-center gap-1.5 min-w-0">
+                                    <span
+                                        className="h-3 w-3 rounded-full shrink-0"
+                                        style={{ backgroundColor: item.color }}
+                                    />
+                                    <span className="truncate text-gray-700">{item.name}</span>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -134,7 +151,7 @@ export default function ChartSection({
                                 width={40}
                             />
                             <Tooltip content={<ChartTooltip />} />
-                            <Legend wrapperStyle={{ paddingTop: '20px' }} />
+                            <Legend wrapperStyle={{ paddingTop: '20px', fontSize: '12px' }} />
                             <Bar
                                 dataKey="areaHa"
                                 name="Luas Deforestasi (ha)"

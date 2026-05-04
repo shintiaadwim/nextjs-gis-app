@@ -14,7 +14,7 @@ export function Sidebar({ children, className }: ClassNameProps) {
     return (
         <aside
             className={clsx(
-                'sticky top-0 h-screen w-56 flex flex-col border-r border-zinc-200 bg-white max-lg:w-full',
+                'fixed top-0 left-0 h-screen w-56 flex flex-col border-r border-zinc-200 bg-white overflow-y-auto',
                 className
             )}
         >

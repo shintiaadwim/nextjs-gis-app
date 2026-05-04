@@ -70,7 +70,7 @@ export function AppSidebar() {
                         </span>
                         <ChevronUpIcon className="ml-auto size-4 md:max-lg:hidden" />
                     </DropdownButton>
-                    <DropdownMenu className="min-w-64" anchor="top start">
+                    <DropdownMenu className="w-52 max-w-full" anchor="top start">
                         {profileMenu.slice(0, 2).map(({ href, label, icon: Icon }) => (
                             <DropdownItem key={href} href={href}>
                                 <Icon className="size-4" />
