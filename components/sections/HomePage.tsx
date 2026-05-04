@@ -2,10 +2,7 @@
 
 import Link from 'next/link'
 import { useEffect, useMemo, useState } from 'react'
-import ChartSection from '@/components/features/ChartSection'
-import DeforestationMap from '@/components/features/DeforestationMap'
-import FilterPanel from '@/components/features/FilterPanel'
-import StatCard from '@/components/ui/StatCard'
+import { MainContentLayout } from '@/components/sections/MainContentLayout'
 import {
   calculateTotals,
   getRegionSummary,
@@ -67,137 +64,66 @@ export function HomePage() {
   const regionData = getRegionSummary(filteredData)
 
   return (
-    <main className="container mx-auto px-4 py-8">
-      <div className="mb-10 border border-blue-200 bg-linear-to-br from-blue-50 to-gray-50 p-10 shadow-lg shadow-blue-100 animate-fade-in">
-        <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-          <div className="animate-slide-in">
-            <p className="text-sm uppercase tracking-[0.28em] text-blue-600 font-medium">
-              🌿 Carbon-Loss Tracker
-            </p>
-            <h1 className="mt-3 text-4xl font-bold text-gray-900 sm:text-5xl">
-              Estimasi Pelepasan Emisi Karbon Berdasarkan Deforestasi di Indonesia
-            </h1>
-            <p className="mt-4 max-w-2xl text-gray-600 leading-relaxed">
-              Monitoring deforestasi dan emisi CO₂ di wilayah Indonesia dengan
-              visualisasi tren, perbandingan wilayah, dan estimasi karbon
-              berbasis luas hutan yang hilang.
-            </p>
-            <div className="mt-6">
+    <div className="w-full min-h-screen">
+      {/* Hero Section */}
+      <div className="bg-linear-to-r from-blue-600 via-blue-700 to-emerald-700 text-white relative overflow-hidden">
+        {/* Decorative background elements */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl -mr-48 -mt-48"></div>
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl -ml-48 -mb-48"></div>
+        </div>
+
+        <div className="relative mx-auto max-w-6xl px-4 sm:px-6 md:px-8 py-12 sm:py-16 md:py-20 lg:py-24">
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8 lg:gap-12">
+            <div className="flex-1 min-w-0">
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full mb-6 border border-white/30">
+                <span className="text-lg">🌍</span>
+                <p className="text-xs sm:text-sm font-semibold">Carbon-Loss Tracker Indonesia</p>
+              </div>
+
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight mb-4 sm:mb-6 wrap-break-words">
+                Monitor Emisi Karbon dari Deforestasi
+              </h1>
+
+              <p className="text-sm sm:text-base lg:text-lg text-blue-100 leading-relaxed mb-8 sm:mb-10 max-w-2xl">
+                Platform analitik komprehensif untuk memantau deforestasi dan emisi CO₂ di seluruh Indonesia. Visualisasi real-time, tren historis, dan perbandingan regional untuk memahami dampak lingkungan.
+              </p>
+
               <Link
                 href="/analytics"
-                className="inline-flex items-center gap-2 rounded-full bg-linear-to-r from-blue-600 to-blue-700 px-6 py-3 text-sm font-semibold text-white transition-all hover:from-blue-700 hover:to-blue-800 hover:shadow-lg hover:shadow-blue-300 hover:scale-105"
+                className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-white hover:bg-gray-50 text-blue-700 font-semibold rounded-lg transition-all duration-200 text-sm sm:text-base active:scale-95 shadow-lg hover:shadow-xl"
               >
-                📊 Lihat analisis wilayah
-                <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5l7 7-7 7"
-                  />
+                <span>📊 Lihat Analisis Lengkap</span>
+                <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
               </Link>
             </div>
-          </div>
-          <div className="rounded-3xl bg-linear-to-br from-blue-600 to-gray-700 px-6 py-5 text-white shadow-lg shadow-blue-200 backdrop-blur-sm border border-blue-300 animate-fade-in">
-            <p className="text-sm text-blue-100">Status dataset</p>
-            <p className="mt-2 text-2xl font-bold text-white">
-              {loading ? (
-                <span className="animate-pulse">Memuat...</span>
-              ) : (
-                `${data.length} catatan`
-              )}
-            </p>
-            {!loading && (
-              <div className="mt-2 flex items-center gap-2 text-xs text-green-400">
-                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                Data tersedia
+
+            {/* Data Status Card */}
+            <div className="w-full sm:w-auto shrink-0">
+              <div className="bg-white/10 backdrop-blur-md text-white rounded-2xl p-6 sm:p-8 shadow-2xl border border-white/20">
+                <div className="space-y-4">
+                  <div>
+                    <p className="text-xs sm:text-sm text-blue-100 font-medium">Total Dataset</p>
+                    <p className="text-3xl sm:text-4xl font-bold mt-2">
+                      {loading ? <span className="animate-pulse">···</span> : `${data.length}`}
+                    </p>
+                    <p className="text-xs sm:text-sm text-blue-100 mt-1">catatan tersedia</p>
+                  </div>
+                  {!loading && (
+                    <div className="pt-3 border-t border-white/20 flex items-center gap-2 text-emerald-300">
+                      <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
+                      <span className="text-xs sm:text-sm">Sistem siap</span>
+                    </div>
+                  )}
+                </div>
               </div>
-            )}
+            </div>
           </div>
         </div>
-      </div>
-
-      <div className="grid gap-8 w-full">
-        <section className="space-y-6 w-full">
-          <div className="grid gap-3 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 w-full">
-            <StatCard
-              label="Total luas deforestasi"
-              value={`${totals.totalArea.toLocaleString('id-ID')} ha`}
-              icon="🌳"
-              trend="down"
-              accent="from-red-50 to-red-100"
-            />
-            <StatCard
-              label="Estimasi total emisi"
-              value={`${totals.totalEmission.toLocaleString('id-ID', {
-                maximumFractionDigits: 0,
-              })} ton CO₂`}
-              icon="💨"
-              trend="up"
-              accent="from-orange-50 to-orange-100"
-            />
-            <StatCard
-              label="Data periode"
-              value="2018 - 2022"
-              icon="📅"
-              trend="neutral"
-              accent="from-blue-50 to-blue-100"
-            />
-          </div>
-
-          {error ? (
-            <div className="rounded-3xl border border-red-500/20 bg-red-500/10 p-5 text-sm text-red-200">
-              Terjadi kesalahan saat memuat data: {error}
-            </div>
-          ) : null}
-
-          <ChartSection trendData={trendData} regionData={regionData} />
-
-          <div className="animate-fade-in">
-            <DeforestationMap data={filteredData} selectedYear={filters.year} />
-          </div>
-        </section>
-
-        <aside className="space-y-6 w-full order-first lg:order-last lg:w-auto lg:h-fit">
-          <FilterPanel
-            data={data}
-            selectedYear={filters.year}
-            selectedProvince={filters.province}
-            onChange={setFilters}
-          />
-          <div className="hidden lg:block group relative overflow-hidden rounded-2xl border border-gray-200 p-5 shadow-md bg-linear-to-br from-slate-50 to-gray-50 animate-fade-in lg:sticky lg:top-24">
-            <div className="absolute inset-0 bg-linear-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-            <div className="relative z-10">
-              <h2 className="text-sm font-bold text-gray-900 mb-3">
-                📊 Info Sistem
-              </h2>
-              <p className="text-gray-600 text-sm leading-relaxed">
-                Estimasi berbasis luas deforestasi dikalikan faktor emisi karbon
-                standar. Perhitungan ini memungkinkan perbandingan area dan
-                emisi antar wilayah serta tahun.
-              </p>
-              <div className="mt-4 rounded-lg bg-blue-50 p-3 text-gray-700 border border-blue-200 text-xs space-y-2">
-                <p className="text-gray-700 font-semibold">📐 Rumus:</p>
-                <p className="font-mono text-blue-900 bg-white/70 px-2 py-1 rounded text-xs">
-                  Emisi = Luas (ha) × 45.5 ton CO₂/ha
-                </p>
-                <p className="text-gray-500">
-                  ℹ️ Standar faktor emisi hutan tropis
-                </p>
-              </div>
-            </div>
-
-            <div className="absolute -bottom-8 -right-8 w-16 h-16 bg-linear-to-tl from-blue-200/30 to-cyan-200/30 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-          </div>
-        </aside>
-      </div>
-    </main>
+      </div>  
+    </div>
   )
 }
+

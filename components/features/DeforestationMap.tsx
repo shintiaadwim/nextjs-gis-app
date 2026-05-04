@@ -22,8 +22,8 @@ const Popup = dynamic(() => import('react-leaflet').then((mod) => mod.Popup), {
 
 function MapLoader() {
     return (
-        <div className="h-60 sm:h-80 md:h-96 lg:h-112 w-full rounded-xl sm:rounded-2xl overflow-hidden border border-gray-300 shadow-md sm:shadow-lg bg-gray-50 flex items-center justify-center">
-            <p className="text-gray-500">Memuat peta...</p>
+        <div className="h-48 sm:h-64 md:h-80 lg:h-96 w-full rounded-lg border border-gray-200 shadow-sm bg-gray-50 flex items-center justify-center">
+            <p className="text-sm text-gray-500">Memuat peta...</p>
         </div>
     )
 }
@@ -52,8 +52,8 @@ export default function DeforestationMap({
 
     if (!data || data.length === 0) {
         return (
-            <div className="h-150 w-full rounded-3xl overflow-hidden border border-gray-300 shadow-lg bg-gray-50 flex items-center justify-center">
-                <p className="text-gray-500">Tidak ada data peta untuk ditampilkan</p>
+            <div className="h-48 sm:h-64 md:h-80 lg:h-96 w-full rounded-lg border border-gray-200 shadow-sm bg-gray-50 flex items-center justify-center">
+                <p className="text-sm text-gray-500">Tidak ada data peta untuk ditampilkan</p>
             </div>
         )
     }

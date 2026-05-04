@@ -13,6 +13,7 @@ import {
     ChartBarIcon,
     DocumentChartBarIcon,
     TableCellsIcon,
+    ChartPieIcon,
 } from '@heroicons/react/20/solid'
 
 export type SidebarIcon = ComponentType<SVGProps<SVGSVGElement>>
@@ -32,6 +33,7 @@ export type SidebarMenuItem = {
 export const mainNavigation: SidebarNavItem[] = [
     { href: '/', label: 'Dashboard', icon: HomeIcon },
     { href: '/analytics', label: 'Analytics', icon: ChartBarIcon },
+    { href: '/statistics', label: 'Statistics', icon: ChartPieIcon },
     { href: '/data', label: 'Data', icon: TableCellsIcon },
     { href: '/reports', label: 'Reports', icon: DocumentChartBarIcon },
     { href: '/settings', label: 'Settings', icon: Cog6ToothIcon },

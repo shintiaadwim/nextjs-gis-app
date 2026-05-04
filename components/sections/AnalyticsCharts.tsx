@@ -30,7 +30,7 @@ export function AnalyticsCharts() {
                     {getTrendData().map((height, index) => (
                         <div
                             key={index}
-                            className="flex-1 rounded-t-2xl bg-gradient-to-t from-sky-500 to-cyan-400 transition hover:from-sky-600 hover:to-cyan-500"
+                            className="flex-1 rounded-t-2xl bg-linear-to-t from-sky-500 to-cyan-400 transition hover:from-sky-600 hover:to-cyan-500"
                             style={{ height: `${height}%` }}
                             title={`${height.toFixed(0)}%`}
                         />
@@ -45,7 +45,7 @@ export function AnalyticsCharts() {
                 <h2 className="text-lg font-semibold text-sky-500">Komposisi Emisi per Wilayah</h2>
                 <div className={`mt-6 flex items-center justify-center ${loading ? 'opacity-50' : ''}`}>
                     <div className="relative h-52 w-52 rounded-full bg-[conic-gradient(from_180deg,_#38bdf8_0_28%,_#2563eb_28%_52%,_#0f172a_52%_76%,_#94a3b8_76%_100%)] shadow-lg">
-                        <div className="absolute inset-[22px] rounded-full bg-white flex items-center justify-center">
+                        <div className="absolute inset-5.5 rounded-full bg-white flex items-center justify-center">
                             <span className="text-xs font-semibold text-slate-600">Komposisi</span>
                         </div>
                     </div>

@@ -12,7 +12,12 @@ function isInternalHref(href: string) {
 
 export function Sidebar({ children, className }: ClassNameProps) {
     return (
-        <aside className={clsx('flex min-h-screen w-72 flex-col border-r border-zinc-200 bg-white max-lg:w-full', className)}>
+        <aside
+            className={clsx(
+                'sticky top-0 h-screen w-56 flex flex-col border-r border-zinc-200 bg-white max-lg:w-full',
+                className
+            )}
+        >
             {children}
         </aside>
     )
@@ -24,7 +29,13 @@ export function SidebarHeader({ children, className }: ClassNameProps) {
 
 export function SidebarBody({ children, className, ...props }: SidebarBodyProps) {
     return (
-        <div className={clsx('flex min-h-0 flex-1 flex-col overflow-y-auto p-3', className)} {...props}>
+        <div
+            className={clsx(
+                'flex min-h-0 flex-1 flex-col overflow-y-auto p-3',
+                className
+            )}
+            {...props}
+        >
             {children}
         </div>
     )
@@ -38,14 +49,11 @@ export function SidebarSection({ children, className }: ClassNameProps) {
     return <section className={clsx('mb-4 flex flex-col gap-1', className)}>{children}</section>
 }
 
-export function SidebarHeading({ children, className }: ClassNameProps) {
-    return <h2 className={clsx('px-2 py-1 text-xs font-semibold uppercase tracking-wide text-zinc-500', className)}>{children}</h2>
-}
-
 export function SidebarItem({ children, className, ...props }: SidebarItemProps) {
     const { href, ...restProps } = props
+
     const itemClassName = clsx(
-        'flex items-center gap-2 rounded-lg px-2 py-2 text-sm text-zinc-700 transition-colors duration-200 hover:bg-zinc-100 hover:text-zinc-900',
+        'flex items-center gap-2 rounded-lg px-2 py-2 text-sm text-zinc-700 transition hover:bg-zinc-100',
         className
     )
 
@@ -58,11 +66,7 @@ export function SidebarItem({ children, className, ...props }: SidebarItemProps)
     }
 
     return (
-        <a
-            className={itemClassName}
-            href={href}
-            {...props}
-        >
+        <a href={href} className={itemClassName} {...restProps}>
             {children}
         </a>
     )
@@ -70,8 +74,4 @@ export function SidebarItem({ children, className, ...props }: SidebarItemProps)
 
 export function SidebarLabel({ children, className }: ClassNameProps) {
     return <span className={clsx('truncate', className)}>{children}</span>
-}
-
-export function SidebarSpacer() {
-    return <div className="flex-1" />
 }
