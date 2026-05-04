@@ -42,10 +42,15 @@ export interface UseStatisticsDataReturn {
     }
     trendData: TrendDataPoint[]
     regionData: RegionDataPoint[]
+    dataPeriod: string
     error: string | null
     loading: boolean
     onFilterChange: (filters: FilterOptions) => void
 }
+
+// Toggle salah satu dari dua opsi ini sesuai kebutuhan data fallback.
+// const FALLBACK_DATA_PERIOD = '2001 - 2024'
+const FALLBACK_DATA_PERIOD = '2018 - 2022'
 
 export function useStatisticsData(): UseStatisticsDataReturn {
     const [data, setData] = useState<DeforestationRecord[]>([])
@@ -74,6 +79,7 @@ export function useStatisticsData(): UseStatisticsDataReturn {
     const totals = calculateTotals(filteredData)
     const trendData = getYearlyTrend(filteredData)
     const regionData = getRegionSummary(filteredData)
+    const dataPeriod = useMemo(() => FALLBACK_DATA_PERIOD, [])
 
     return {
         data,
@@ -82,6 +88,7 @@ export function useStatisticsData(): UseStatisticsDataReturn {
         totals,
         trendData,
         regionData,
+        dataPeriod,
         error,
         loading,
         onFilterChange: setFilters,

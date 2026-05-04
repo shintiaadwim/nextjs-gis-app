@@ -8,16 +8,15 @@ import { sampleDeforestationData } from "@/lib/data"
 const ANALYTICS_CARDS = [
     {
         id: 'charts',
-        span: 'lg:col-span-2',
+        span: 'lg:col-span-3',
         sticky: false,
         className: '',
     },
     {
         id: 'comparison',
-        span: 'lg:col-span-1',
-        sticky: true,
-        stickyTop: 'top-24',
-        className: 'h-fit',
+        span: 'lg:col-span-3',
+        sticky: false,
+        className: '',
     },
 ]
 
@@ -26,7 +25,7 @@ export function AnalyticsPage() {
 
     const renderCard = (card: typeof ANALYTICS_CARDS[0]) => {
         const baseClasses = `${card.span} ${card.className}`
-        const stickyClasses = card.sticky ? `${baseClasses} sticky ${card.stickyTop}` : baseClasses
+        const stickyClasses = card.sticky ? `${baseClasses} sticky ${card.sticky}` : baseClasses
 
         switch (card.id) {
             case 'charts':

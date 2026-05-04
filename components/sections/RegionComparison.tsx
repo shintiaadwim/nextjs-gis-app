@@ -52,8 +52,8 @@ export default function RegionComparison({
               className="rounded-lg border border-gray-200 bg-gray-50 p-3 md:p-4 hover:bg-blue-50 transition-colors"
             >
               <div className="flex items-start justify-between gap-3 mb-2 md:mb-3">
-                <p className="font-semibold text-gray-900 text-xs md:text-sm leading-tight flex-1 break-words">{province}</p>
-                <span className="text-xs md:text-sm font-bold text-blue-600 whitespace-nowrap flex-shrink-0">
+                <p className="font-semibold text-gray-900 text-xs md:text-sm leading-tight flex-1 wrap-break-words">{province}</p>
+                <span className="text-xs md:text-sm font-bold text-blue-600 whitespace-nowrap shrink-0">
                   {emissionPerHa.toFixed(1)} tCO₂/ha
                 </span>
               </div>

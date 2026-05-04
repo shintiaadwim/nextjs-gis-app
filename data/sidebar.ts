@@ -34,9 +34,9 @@ export const mainNavigation: SidebarNavItem[] = [
     { href: '/', label: 'Dashboard', icon: HomeIcon },
     { href: '/analytics', label: 'Analytics', icon: ChartBarIcon },
     { href: '/statistics', label: 'Statistics', icon: ChartPieIcon },
-    { href: '/data', label: 'Data', icon: TableCellsIcon },
-    { href: '/reports', label: 'Reports', icon: DocumentChartBarIcon },
-    { href: '/settings', label: 'Settings', icon: Cog6ToothIcon },
+    // { href: '/data', label: 'Data', icon: TableCellsIcon },
+    // { href: '/reports', label: 'Reports', icon: DocumentChartBarIcon },
+    // { href: '/settings', label: 'Settings', icon: Cog6ToothIcon },
 ]
 
 export const teamMenu: SidebarMenuItem[] = [

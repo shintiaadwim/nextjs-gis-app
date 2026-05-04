@@ -9,7 +9,7 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'Carbon-Loss Tracker',
+  title: 'Carbon Loss Tracker',
   description: 'Estimasi pelepasan emisi karbon berdasarkan deforestasi di Indonesia.',
   keywords: ['deforestasi', 'karbon', 'emisi', 'Indonesia', 'environment'],
   authors: [{ name: 'Carbon Loss Tracker Team' }],

@@ -76,8 +76,8 @@ export function HomePage() {
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8 lg:gap-12">
             <div className="flex-1 min-w-0">
               <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full mb-6 border border-white/30">
-                <span className="text-lg">🌍</span>
-                <p className="text-xs sm:text-sm font-semibold">Carbon-Loss Tracker Indonesia</p>
+                <span className="text-lg">🌳</span>
+                <p className="text-xs sm:text-sm font-semibold">Carbon Loss Tracker Indonesia</p>
               </div>
 
               <h1 className="font-bold leading-tight mb-4 sm:mb-6 wrap-break-words sm:text-2xl lg:text-3xl xl:text-4xl">

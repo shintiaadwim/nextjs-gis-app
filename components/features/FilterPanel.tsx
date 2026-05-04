@@ -21,8 +21,7 @@ export default function FilterPanel({
         <div className="w-full rounded-xl border border-gray-200 bg-white p-5 sm:p-6 md:p-7 shadow-sm space-y-5 sm:space-y-6">
             <h2 className="text-base md:text-lg font-bold text-gray-900">🔍 Filter Data</h2>
 
-            <div className="space-y-5 md:space-y-6">
-                {/* Tahun Filter */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
                 <div className="space-y-2 md:space-y-3">
                     <label className="text-xs md:text-sm font-semibold uppercase tracking-wider text-gray-700">
                         Tahun

@@ -43,7 +43,7 @@ export default function ChartSection({
     return (
         <div className="space-y-6">
             {/* Charts Grid */}
-            <div className="grid gap-6 lg:grid-cols-2 w-full">
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
                 {/* Line Chart - Tren */}
                 <div className="rounded-lg border border-gray-200 bg-white p-4 sm:p-5 md:p-6 shadow-sm hover:shadow-md transition-shadow">
                     <h3 className="mb-4 sm:mb-5 md:mb-6 text-base md:text-lg font-bold text-gray-900">📈 Tren Deforestasi</h3>
@@ -129,39 +129,40 @@ export default function ChartSection({
                         </div>
                     </div>
                 </div>
-            </div>
 
-            {/* Bar Chart - Laju Deforestasi */}
-            <div className="rounded-lg border border-gray-200 bg-white p-4 sm:p-5 md:p-6 shadow-sm hover:shadow-md transition-shadow">
-                <h3 className="mb-4 sm:mb-5 md:mb-6 text-base md:text-lg font-bold text-gray-900">📊 Laju Deforestasi</h3>
-                <div className="h-72 md:h-80 lg:h-96">
-                    <ResponsiveContainer width="100%" height="100%">
-                        <BarChart data={trendData} margin={{ top: 5, right: 10, left: -20, bottom: 5 }}>
-                            <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
-                            <XAxis
-                                dataKey="year"
-                                stroke="#9ca3af"
-                                fontSize={10}
-                                tick={{ fill: '#6b7280' }}
-                            />
-                            <YAxis
-                                stroke="#9ca3af"
-                                fontSize={10}
-                                tick={{ fill: '#6b7280' }}
-                                width={40}
-                            />
-                            <Tooltip content={<ChartTooltip />} />
-                            <Legend wrapperStyle={{ paddingTop: '20px', fontSize: '12px' }} />
-                            <Bar
-                                dataKey="areaHa"
-                                name="Luas Deforestasi (ha)"
-                                fill="#2563eb"
-                                radius={[8, 8, 0, 0]}
-                            />
-                        </BarChart>
-                    </ResponsiveContainer>
+                {/* Bar Chart - Laju Deforestasi */}
+                <div className="rounded-lg border border-gray-200 bg-white p-4 sm:p-5 md:p-6 shadow-sm hover:shadow-md transition-shadow">
+                    <h3 className="mb-4 sm:mb-5 md:mb-6 text-base md:text-lg font-bold text-gray-900">📊 Laju Deforestasi</h3>
+                    <div className="h-72 md:h-80 lg:h-96">
+                        <ResponsiveContainer width="100%" height="100%">
+                            <BarChart data={trendData} margin={{ top: 5, right: 10, left: -20, bottom: 5 }}>
+                                <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+                                <XAxis
+                                    dataKey="year"
+                                    stroke="#9ca3af"
+                                    fontSize={10}
+                                    tick={{ fill: '#6b7280' }}
+                                />
+                                <YAxis
+                                    stroke="#9ca3af"
+                                    fontSize={10}
+                                    tick={{ fill: '#6b7280' }}
+                                    width={40}
+                                />
+                                <Tooltip content={<ChartTooltip />} />
+                                <Legend wrapperStyle={{ paddingTop: '20px', fontSize: '12px' }} />
+                                <Bar
+                                    dataKey="areaHa"
+                                    name="Luas Deforestasi (ha)"
+                                    fill="#2563eb"
+                                    radius={[8, 8, 0, 0]}
+                                />
+                            </BarChart>
+                        </ResponsiveContainer>
+                    </div>
                 </div>
             </div>
+
         </div>
     )
 }

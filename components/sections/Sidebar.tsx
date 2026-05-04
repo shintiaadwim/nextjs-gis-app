@@ -31,7 +31,13 @@ export function AppSidebar() {
     return (
         <Sidebar>
             <SidebarHeader>
-                <span className="block truncate text-xs/5 font-normal text-zinc-500">erica@example.com</span>
+                <div className="flex items-center gap-3 px-2 py-1">
+                    <div className="text-2xl">🌳</div>
+                    <div>
+                        <p className="text-sm font-bold text-zinc-900">Forest</p>
+                        <p className="text-xs text-zinc-500">Made by Group 2</p>
+                    </div>
+                </div>
             </SidebarHeader>
 
             <SidebarBody>
@@ -58,7 +64,7 @@ export function AppSidebar() {
                 </SidebarSection>
             </SidebarBody>
 
-            <SidebarFooter>
+            {/* <SidebarFooter>
                 <Dropdown>
                     <DropdownButton as={SidebarItem} href="#" className="md:max-lg:justify-center md:max-lg:px-0">
                         <span className="flex min-w-0 items-center gap-3">
@@ -86,7 +92,7 @@ export function AppSidebar() {
                         ))}
                     </DropdownMenu>
                 </Dropdown>
-            </SidebarFooter>
+            </SidebarFooter> */}
         </Sidebar>
     )
 }
