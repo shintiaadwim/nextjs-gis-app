@@ -49,8 +49,8 @@ export interface UseStatisticsDataReturn {
 }
 
 // Toggle salah satu dari dua opsi ini sesuai kebutuhan data fallback.
-// const FALLBACK_DATA_PERIOD = '2001 - 2024'
-const FALLBACK_DATA_PERIOD = '2018 - 2022'
+const FALLBACK_DATA_PERIOD = '2001 - 2024'
+// const FALLBACK_DATA_PERIOD = '2018 - 2022'
 
 export function useStatisticsData(): UseStatisticsDataReturn {
     const [data, setData] = useState<DeforestationRecord[]>([])

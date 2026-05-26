@@ -12,6 +12,7 @@ import {
     HomeIcon,
     ChartBarIcon,
     DocumentChartBarIcon,
+    PresentationChartBarIcon,
     TableCellsIcon,
     ChartPieIcon,
 } from '@heroicons/react/20/solid'
@@ -31,9 +32,10 @@ export type SidebarMenuItem = {
 }
 
 export const mainNavigation: SidebarNavItem[] = [
-    { href: '/', label: 'Dashboard', icon: HomeIcon },
+    { href: '/', label: 'Landing Page', icon: HomeIcon },
     { href: '/analytics', label: 'Analytics', icon: ChartBarIcon },
     { href: '/statistics', label: 'Statistics', icon: ChartPieIcon },
+    { href: '/dashboards', label: 'Dashboards', icon: PresentationChartBarIcon },
     // { href: '/data', label: 'Data', icon: TableCellsIcon },
     // { href: '/reports', label: 'Reports', icon: DocumentChartBarIcon },
     // { href: '/settings', label: 'Settings', icon: Cog6ToothIcon },
