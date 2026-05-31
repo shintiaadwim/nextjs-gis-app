@@ -9,7 +9,7 @@ type StatCardProps = {
 export default function StatCard({
     label,
     value,
-    accent = 'bg-linear-to-br from-blue-50 to-gray-50',
+    accent = 'bg-linear-to-br from-slate-50 to-white',
     icon,
     trend = 'neutral',
 }: StatCardProps) {
@@ -27,17 +27,17 @@ export default function StatCard({
 
     return (
         <div
-            className={`relative overflow-hidden rounded-xl border border-gray-200 p-4 md:p-5 shadow-sm hover:shadow-md transition-all duration-300 bg-linear-to-br ${accent}`}
+            className={`relative overflow-hidden card p-4 md:p-5 hover:shadow-md transition-all duration-300 bg-linear-to-br ${accent}`}
         >
             <div className="flex flex-col space-y-4">
                 <div className="flex items-start justify-between">
-                    <p className="text-xs uppercase tracking-widest text-gray-600 font-semibold leading-tight flex-1">
+                    <p className="text-[11px] uppercase tracking-[0.22em] text-slate-500 font-semibold leading-tight flex-1">
                         {label}
                     </p>
                     {icon && <span className="text-xl md:text-2xl opacity-70 shrink-0">{icon}</span>}
                 </div>
 
-                <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 wrap-break-words">
+                <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-slate-900 wrap-break-words">
                     {value}
                 </p>
 

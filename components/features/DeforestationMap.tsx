@@ -23,8 +23,8 @@ const Popup = dynamic(() => import('react-leaflet').then((mod) => mod.Popup), {
 
 function MapLoader() {
     return (
-        <div className="h-48 sm:h-64 md:h-80 lg:h-96 w-full rounded-lg border border-gray-200 shadow-sm bg-gray-50 flex items-center justify-center">
-            <p className="text-sm text-gray-500">Memuat peta...</p>
+        <div className="h-48 sm:h-64 md:h-80 lg:h-96 w-full rounded-2xl border border-slate-200 shadow-sm bg-white flex items-center justify-center">
+            <p className="text-sm text-slate-500">Memuat peta...</p>
         </div>
     )
 }
@@ -53,8 +53,8 @@ export default function DeforestationMap({
 
     if (!data || data.length === 0) {
         return (
-            <div className="h-48 sm:h-64 md:h-80 lg:h-96 w-full rounded-lg border border-gray-200 shadow-sm bg-gray-50 flex items-center justify-center">
-                <p className="text-sm text-gray-500">Tidak ada data peta untuk ditampilkan</p>
+            <div className="card p-6 flex items-center justify-center h-48 sm:h-64 md:h-80 lg:h-96 w-full">
+                <p className="text-sm text-slate-500">Tidak ada data peta untuk ditampilkan</p>
             </div>
         )
     }
@@ -92,11 +92,10 @@ export default function DeforestationMap({
     }
 
     return (
-        <div className="h-60 sm:h-80 md:h-96 lg:h-112 w-full rounded-xl sm:rounded-2xl overflow-hidden border border-gray-300 shadow-md sm:shadow-lg">
-            <MapContent
-                provinceData={provinceData}
-                getColor={getColor}
-            />
+        <div className="w-full card overflow-hidden rounded-xl sm:rounded-2xl">
+            <div className="h-60 sm:h-80 md:h-96 lg:h-112 w-full">
+                <MapContent provinceData={provinceData} getColor={getColor} />
+            </div>
         </div>
     )
 }
@@ -157,7 +156,7 @@ function MapContent({
         const propName = feature.properties.Propinsi;
         const mappedName = normalizeProvinceName(propName);
         const data = provinceData[mappedName] || provinceData[propName];
-        
+
         return {
             fillColor: data ? getColor(data.areaHa) : '#e5e7eb', // default gray if no data
             fillOpacity: data ? 0.7 : 0.4,
@@ -177,9 +176,9 @@ function MapContent({
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-            
-            <GeoJSON 
-                data={geojsonData as any} 
+
+            <GeoJSON
+                data={geojsonData as any}
                 style={style}
                 onEachFeature={onEachFeature}
             />

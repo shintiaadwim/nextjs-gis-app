@@ -27,6 +27,8 @@ export default function ChartSection({
     trendData,
     regionData,
 }: ChartSectionProps) {
+    const trendChartMargin = { top: 5, right: 16, left: 8, bottom: 5 }
+
     const pieLegendItems = regionData.map((entry, index) => ({
         name: entry.province,
         color: PIE_COLORS[index % PIE_COLORS.length],
@@ -34,8 +36,8 @@ export default function ChartSection({
 
     if (!trendData || trendData.length === 0) {
         return (
-            <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
-                <p className="text-center text-sm text-gray-500">Tidak ada data untuk ditampilkan</p>
+            <div className="card p-6">
+                <p className="text-center text-sm text-slate-500">Tidak ada data untuk ditampilkan</p>
             </div>
         )
     }
@@ -44,53 +46,41 @@ export default function ChartSection({
         <div className="space-y-6">
             {/* Charts Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
-                {/* Line Chart - Tren */}
-                <div className="rounded-lg border border-gray-200 bg-white p-4 sm:p-5 md:p-6 shadow-sm hover:shadow-md transition-shadow">
-                    <h3 className="mb-4 sm:mb-5 md:mb-6 text-base md:text-lg font-bold text-gray-900">📈 Tren Deforestasi</h3>
-                    <div className="h-72 md:h-80 lg:h-96">
-                        <ResponsiveContainer width="100%" height="100%">
-                            <LineChart data={trendData} margin={{ top: 5, right: 10, left: -20, bottom: 5 }}>
-                                <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
-                                <XAxis
-                                    dataKey="year"
-                                    stroke="#9ca3af"
-                                    fontSize={10}
-                                    tick={{ fill: '#6b7280' }}
-                                />
-                                <YAxis
-                                    stroke="#9ca3af"
-                                    fontSize={10}
-                                    tick={{ fill: '#6b7280' }}
-                                    width={40}
-                                />
-                                <Tooltip content={<ChartTooltip />} />
-                                <Legend wrapperStyle={{ paddingTop: '20px', fontSize: '12px' }} />
-                                <Line
-                                    type="monotone"
-                                    dataKey="areaHa"
-                                    name="Luas (ha)"
-                                    stroke="#2563eb"
-                                    strokeWidth={2}
-                                    dot={{ fill: '#2563eb', r: 4 }}
-                                    activeDot={{ r: 6 }}
-                                />
-                                <Line
-                                    type="monotone"
-                                    dataKey="carbonEmissionTon"
-                                    name="Emisi CO₂ (ton)"
-                                    stroke="#3b82f6"
-                                    strokeWidth={2}
-                                    dot={{ fill: '#3b82f6', r: 4 }}
-                                    activeDot={{ r: 6 }}
-                                />
-                            </LineChart>
-                        </ResponsiveContainer>
+                {/* Tren Deforestasi - Dua Bar Chart (atas: Luas, bawah: Emisi) */}
+                <div className="card p-4 sm:p-5 md:p-6 hover:shadow-md transition-shadow">
+                    <h3 className="mb-4 sm:mb-5 md:mb-6 text-base md:text-lg font-bold text-slate-900">📈 Tren Deforestasi</h3>
+                    <div className="h-96 grid grid-rows-2 gap-4">
+                        <div className="h-44">
+                            <ResponsiveContainer width="100%" height="100%">
+                                <BarChart data={trendData} margin={trendChartMargin}>
+                                    <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+                                    <XAxis dataKey="year" stroke="#9ca3af" fontSize={10} tick={{ fill: '#6b7280' }} />
+                                    <YAxis stroke="#9ca3af" fontSize={10} tick={{ fill: '#6b7280' }} width={56} tickMargin={8} />
+                                    <Tooltip content={<ChartTooltip />} />
+                                    <Legend wrapperStyle={{ paddingTop: '6px', fontSize: '12px' }} />
+                                    <Bar dataKey="areaHa" name="Luas (ha)" fill="#2563eb" radius={[6, 6, 0, 0]} />
+                                </BarChart>
+                            </ResponsiveContainer>
+                        </div>
+
+                        <div className="h-44">
+                            <ResponsiveContainer width="100%" height="100%">
+                                <BarChart data={trendData} margin={trendChartMargin}>
+                                    <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+                                    <XAxis dataKey="year" stroke="#9ca3af" fontSize={10} tick={{ fill: '#6b7280' }} />
+                                    <YAxis stroke="#9ca3af" fontSize={10} tick={{ fill: '#6b7280' }} width={56} tickMargin={8} />
+                                    <Tooltip content={<ChartTooltip />} />
+                                    <Legend wrapperStyle={{ paddingTop: '6px', fontSize: '12px' }} />
+                                    <Bar dataKey="carbonEmissionTon" name="Emisi CO₂ (ton)" fill="#10b981" radius={[6, 6, 0, 0]} />
+                                </BarChart>
+                            </ResponsiveContainer>
+                        </div>
                     </div>
                 </div>
 
                 {/* Pie Chart - Komposisi */}
-                <div className="rounded-lg border border-gray-200 bg-white p-4 sm:p-5 md:p-6 shadow-sm hover:shadow-md transition-shadow">
-                    <h3 className="mb-4 sm:mb-5 md:mb-6 text-base md:text-lg font-bold text-gray-900">🥧 Komposisi Emisi</h3>
+                <div className="card p-4 sm:p-5 md:p-6 hover:shadow-md transition-shadow">
+                    <h3 className="mb-4 sm:mb-5 md:mb-6 text-base md:text-lg font-bold text-slate-900">🥧 Komposisi Emisi</h3>
                     <div className="h-72 md:h-80 lg:h-96">
                         <ResponsiveContainer width="100%" height="100%">
                             <PieChart>
@@ -123,7 +113,7 @@ export default function ChartSection({
                                         className="h-3 w-3 rounded-full shrink-0"
                                         style={{ backgroundColor: item.color }}
                                     />
-                                    <span className="truncate text-gray-700">{item.name}</span>
+                                    <span className="truncate text-slate-700">{item.name}</span>
                                 </div>
                             ))}
                         </div>
@@ -131,11 +121,11 @@ export default function ChartSection({
                 </div>
 
                 {/* Bar Chart - Laju Deforestasi */}
-                <div className="rounded-lg border border-gray-200 bg-white p-4 sm:p-5 md:p-6 shadow-sm hover:shadow-md transition-shadow">
-                    <h3 className="mb-4 sm:mb-5 md:mb-6 text-base md:text-lg font-bold text-gray-900">📊 Laju Deforestasi</h3>
+                <div className="card p-4 sm:p-5 md:p-6 hover:shadow-md transition-shadow">
+                    <h3 className="mb-4 sm:mb-5 md:mb-6 text-base md:text-lg font-bold text-slate-900">📊 Laju Deforestasi</h3>
                     <div className="h-72 md:h-80 lg:h-96">
                         <ResponsiveContainer width="100%" height="100%">
-                            <BarChart data={trendData} margin={{ top: 5, right: 10, left: -20, bottom: 5 }}>
+                            <BarChart data={trendData} margin={trendChartMargin}>
                                 <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
                                 <XAxis
                                     dataKey="year"
@@ -147,7 +137,8 @@ export default function ChartSection({
                                     stroke="#9ca3af"
                                     fontSize={10}
                                     tick={{ fill: '#6b7280' }}
-                                    width={40}
+                                    width={56}
+                                    tickMargin={8}
                                 />
                                 <Tooltip content={<ChartTooltip />} />
                                 <Legend wrapperStyle={{ paddingTop: '20px', fontSize: '12px' }} />

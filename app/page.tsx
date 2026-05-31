@@ -1,7 +1,7 @@
-import { HomePage } from '@/components/sections/HomePage'
+import { UnifiedExperience } from '@/components/sections/UnifiedExperience'
 
 export default function Home() {
   return (
-    <HomePage />
+    <UnifiedExperience />
   )
 }

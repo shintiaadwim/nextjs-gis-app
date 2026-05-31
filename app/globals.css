@@ -1,13 +1,16 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #1f2937;
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  --surface: #ffffff;
+  --surface-muted: #f8fafc;
   --primary-blue: #2563eb;
   --primary-blue-light: #3b82f6;
-  --accent-gray: #6b7280;
-  --light-gray: #f3f4f6;
-  --border-gray: #d1d5db;
+  --accent-cyan: #0891b2;
+  --accent-gray: #64748b;
+  --light-gray: #f1f5f9;
+  --border-gray: #e2e8f0;
 }
 
 @theme inline {
@@ -25,12 +28,32 @@ html {
 }
 
 body {
-  background: var(--background);
+  background:
+    radial-gradient(circle at top center, rgba(255, 255, 255, 0.95), transparent 42%),
+    linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
   color: var(--foreground);
   font-family: var(--font-inter), Arial, Helvetica, sans-serif;
   overflow-x: hidden;
   width: 100%;
   @apply antialiased;
+}
+
+.card {
+  @apply rounded-2xl border border-slate-200 bg-white;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+}
+
+.report-panel {
+  @apply rounded-2xl border border-slate-200 bg-white;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+}
+
+.report-chip {
+  @apply rounded-full border border-slate-200 bg-slate-50 px-3 py-2 text-slate-700 transition;
+}
+
+.report-chip:hover {
+  @apply border-cyan-300 bg-cyan-50 text-cyan-700;
 }
 
 /* Prevent zoom on iOS input focus */

@@ -15,14 +15,14 @@ export function MetabaseEmbed({
 
   if (!url) {
     return (
-      <div className="rounded-lg border border-red-200 bg-red-50 p-6 text-center">
-        <p className="text-red-600 text-sm">Metabase URL not configured</p>
+      <div className="card p-6 text-center">
+        <p className="text-slate-600 text-sm">Metabase URL not configured</p>
       </div>
     )
   }
 
   return (
-    <div className={`relative w-full overflow-hidden rounded-lg ${className}`}>
+    <div className={`relative w-full overflow-hidden rounded-2xl card ${className}`}>
       <iframe
         src={url}
         className="w-full border-0"

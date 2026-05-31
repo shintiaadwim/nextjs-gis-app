@@ -12,7 +12,8 @@ type AvatarProps = {
 
 export function Avatar({ src, initials, square = false, className, alt = '', slot }: AvatarProps) {
     const baseClassName = clsx(
-        'inline-flex shrink-0 items-center justify-center overflow-hidden bg-zinc-200 text-xs font-semibold text-zinc-700',
+        'inline-flex shrink-0 items-center justify-center overflow-hidden text-xs font-semibold',
+        'bg-[rgba(255,255,255,0.03)] text-[var(--foreground)]',
         square ? 'rounded-lg' : 'rounded-full',
         slot === 'icon' ? 'size-6' : 'size-8',
         className,

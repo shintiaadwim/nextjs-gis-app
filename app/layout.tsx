@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
+import { CSVProvider } from '@/context/CSVContext'
 import './globals.css'
 
 const inter = Inter({
@@ -34,7 +35,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="id" suppressHydrationWarning className={inter.variable}>
       <head />
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <CSVProvider>{children}</CSVProvider>
+      </body>
     </html>
   )
 }
